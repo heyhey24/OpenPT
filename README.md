@@ -1,74 +1,78 @@
-# DePT: Decoupled Prompt Tuning
+# OpenPT: Towards Open-World Prompt Tuning
 
-Our DePT established the following remarkable results without borrowing Extra Knowledge from stronger models (e.g., via KD) or employing extra Data Augmentation strategies.
+This work is an extension of our preliminary conference version, [DePT](https://github.com/Koorye/DePT). 
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-eurosat)](https://paperswithcode.com/sota/prompt-engineering-on-eurosat?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-dtd)](https://paperswithcode.com/sota/prompt-engineering-on-dtd?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-food-101)](https://paperswithcode.com/sota/prompt-engineering-on-food-101?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-oxford-iiit-pet-dataset)](https://paperswithcode.com/sota/prompt-engineering-on-oxford-iiit-pet-dataset?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-sun397)](https://paperswithcode.com/sota/prompt-engineering-on-sun397?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-caltech-101)](https://paperswithcode.com/sota/prompt-engineering-on-caltech-101?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-imagenet)](https://paperswithcode.com/sota/prompt-engineering-on-imagenet?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-stanford-cars-1)](https://paperswithcode.com/sota/prompt-engineering-on-stanford-cars-1?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-ucf101)](https://paperswithcode.com/sota/prompt-engineering-on-ucf101?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-fgvc-aircraft)](https://paperswithcode.com/sota/prompt-engineering-on-fgvc-aircraft?p=dept-decoupled-prompt-tuning)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/dept-decoupled-prompt-tuning/prompt-engineering-on-oxford-102-flower)](https://paperswithcode.com/sota/prompt-engineering-on-oxford-102-flower?p=dept-decoupled-prompt-tuning)
+Our OpenPT can be used as a plugin to improve existingPT methods. Extensive results on a broad spectrum of baselines, datasets, and evaluation metrics demonstrate the effectiveness and flexibility of OpenPT.
 
-Offical implementation of the paper [DePT: Decoupled Prompt Tuning](https://arxiv.org/abs/2309.07439).
+Offical implementation of the paper Towards Open-World Prompt Tuning.
 
 **Note:** We are doing our best to improve this work. If you have any questions or suggestions, please feel free to create an issue in this repo or contact us at jizhang.jim@gmail.com.
 
-----
+---
 
 # News
 
-- (Feb. 27, 2024)
-  
-  - Our paper is accepted at CVPR 2024!
+- (xx. xx, 2026)
 
-- (Nov. 05, 2023)
-  
-  - Training and evaluation codes for DePT are released.
+  - Our paper is accepted at XX
+- (May. xx, 2026)
 
-- (Sep. 14, 2023)
-  
+  - Training and evaluation codes for OpenPT are released.
+- (May. xx, 2026)
+
   - Our paper is published on arXiv.
 
-----
+---
 
 # Highlights
 
-> **Abstract** Prompt tuning has shown great success in adapting large vision-language pre-trained models to downstream tasks. A plethora of methods have been proposed to tackle the base- new tradeoff (BNT) dilemma, i.e., the better the adapted model generalizes to the base (a.k.a. target) task, the worse it generalizes to new tasks, and vice versa. Despite this, the BNT problem is still far from being resolved and its underlying mechanisms are poorly understood. In this work, we bridge this gap by proposing Decoupled Prompt Tuning (DePT), a first framework tackling the BNT problem from a feature decoupling perspective. Specifically, through an in-depth analysis on the learned features of the base and new tasks, we observe that the BNT stems from a channel bias issue, i.e., the vast majority of feature channels are occupied by base-specific knowledge, resulting in the collapse oftask-shared knowledge important to new tasks. To address this, DePT decouples base-specific knowledge from feature channels into an isolated feature space during prompt tuning, so as to maximally preserve task-shared knowledge in the original feature space for achieving better zero-shot generalization on new tasks. DePT is orthogonal to existing prompt tuning methods, hence it can tackle the BNT problem for all of them. Extensive experiments on 11 datasets show the strong flexibility and effectiveness of DePT.
+> Abstract—Prompt Tuning (PT) has emerged as a promising parameter-efficient paradigm for adapting pre-trained vision-language
+> models (VLMs) to downstream tasks. However, largely built on closed-world assumptions, existing approaches simultaneously suffer
+> from the Base-New Tradeoff (BNT), OOD Overconfidence, and Knowledge Evolution Deficiency, severely compromising their
+> generalizability and reliability in dynamic, open-world environments. In this work, we present Open-World Prompt Tuning (OpenPT), a
+> novel framework for achieving generalizable and reliable adaptation of VLMs in the open world. Specifically, we first reveal that the BNT
+> problem stems from a channel bias issue, and present Decoupled Prompt Tuning with Simplex Equiangular Tight Frame (DePT++),
+> which improves base-to-new generalization by decoupling base-specific and task-shared knowledge into two isolated feature spaces.
+> Building upon DePT++, we then introduce Collaborative Energy-based OOD Detection (CE-OOD), which achieves precise OOD
+> detection by integrating complementary energy scores from the two decoupled spaces. Finally, we develop Pseudo-Class Guided
+> Class-Incremental Learning (PC-CIL) to facilitate the continual learning of new class knowledge by assigning pseudo-class names to
+> OOD samples and distancing new class prototypes from old ones. Remarkably, OpenPT can be used as a plugin to improve existing
+> PT methods. Extensive results on a broad spectrum of baselines, datasets, and evaluation metrics demonstrate the effectiveness and
+> flexibility of OpenPT. 
 
-![Framework](examples/framework.png)
+![Framework](examples/OpenPT.png "Overview of OpenPT framework")
 
-----
+---
 
 # Main Contributions
 
-> 1. We provide an insightful view to analyze the BNT problem in prompt tuning, and for the first time reveal that the BNT stems from the channel bias issue.
-> 2. We propose the DePT framework to tackle the BNT problem from a feature decoupling perspective, and DePT is orthogonal to existing prompt tuning methods. 
-> 3. We perform experiments on 11 diverse datasets and show that DePT consistently enhances the performance of a broad spectrum of baseline methods.
-
-----
+> 1. We reveal that the Base-New Tradeoff (BNT) problem in prompt tuning stems from a channel biasissue and propose DePT++ to overcome it from a
+>    feature decoupling perspective.
+> 2. Based on DePT++, we present OpenPT, a novel and plug-and-play framework for achieving generalizable and reliable VLM adaptation in the open world.
+> 3. We demonstrate OpenPT's effectiveness and flexibility using a broad spectrum of baselines, datasets, and evaluation metrics.
 
 # Flexibility and Effectiveness
 
-Our DePT is orthogonal to both prompt tuning and adapter tuning approaches, therefore can be used as a plugin to improve all of them.
+Our OpenPT is orthogonal to both prompt tuning and adapter tuning approaches, therefore can be used as a plugin to improve all of them.
 
 <div align="center">
   <img src="examples/performance.png" width="40%" />
 </div>
 
-**Base-to-New Generalization Performance**
+**Base-to-new generalization performance over 11 datasets.**
 
-![Base-to-New Generalization](examples/base_to_new_performance.png)
+![Base-to-New Generalization](examples/PT performance.png)
 
-**Cross-Dataset Generalization Performance**
+**OOD detection performance after each class-incremental learning session on OpenPT-Bench (AUROC)**
 
-![Cross-Dataset Generalization](examples/cross_dataset_performance.png)
+![Cross-Dataset Generalization](examples/OOD performance.png)
 
-----
+
+**Class-incremental learning performance on the five new classes from OpenPT-Bench (ACC)**
+
+![Cross-Dataset Generalization](examples/CIL performance.png)
+
+---
 
 # Installation
 
@@ -79,8 +83,8 @@ Setup conda environment (recommended).
 **Create a conda environment**
 
 ```
-conda create -y -n dept python=3.8
-conda activate dept
+conda create -y -n openpt python=3.8
+conda activate openpt
 ```
 
 **Install torch (requires version >= 1.8.1) and torchvision**
@@ -98,25 +102,33 @@ pip install -r requirements.txt
 python setup.py develop
 ```
 
-**Install DePT**
+**Install OpenPT**
 
 ```
 cd ..
 
-git clone https://github.com/koorye/DePT.git
-cd DePT/
+git clone https://github.com/heyhey24/OpenPT.git
+cd OpenPT/
 
 pip install -r requirements.txt
 pip install setuptools==59.5.0
 ```
 
-----
+---
 
 # Data preparation
 
-Please follow the instructions at [DATASETS.md](datasets/DATASETS.md) to prepare all datasets.
+Please follow the instructions at [DATASETS.md](datasets/DATASETS.md) to prepare all datasets. In addition to preparing the data as required, you also need to copy the `openset_ood_class.json` file for each dataset from the `ood class` folder in the code repository to the corresponding dataset folder, for example, Caltech101:
 
-----
+```
+caltech-101/
+|–– 101_ObjectCategories/
+|–– split_zhou_Caltech101.json
+|–– openset_ood_class.json
+```
+
+
+---
 
 # Training and Evaluation
 
@@ -125,9 +137,10 @@ We provide parallel running script `parallel_runner.py` for each prompting varia
 **Base to New Generalization**
 
 ```
-# Running CoOp (w/ DePT)
+# Running CoOp (w/ DePT/DePT++)
 python parallel_runner.py --cfg coop
 python parallel_runner.py --cfg coop_dept
+python parallel_runner.py --cfg coop_dept_etf 
 
 # Running CoCoOp (w/ DePT)
 python parallel_runner.py --cfg cocoop
@@ -142,28 +155,43 @@ python parallel_runner.py --cfg maple
 python parallel_runner.py --cfg maple_dept
 ```
 
+**Openset experiments**
+
+```
+# First train CoOp to obtain CoOp models for each dataset as baseline
+python parallel_runner.py --cfg coop  
+
+# Then run this command to test the baseline on multiple metrics: acc, auroc, fpr95, zsclip acc
+python parallel_runner.py --cfg baselines_coop   
+
+# Run this command to obtain the base model of the DePT++ model using ETF classifier for subsequent incremental training
+python parallel_runner.py --cfg coop_dept_etf  
+
+# Then run this command to perform incremental training and test on multiple metrics: acc, auroc, fpr95, zsclip acc
+python parallel_runner.py --cfg openset_coop_dept  
+```
+
+
 After running, the output will be in the `outputs/` directory, the results will be tallied in the `results/` directory as csv, and a mail will be sent to email address.
 
 If you want to add your own models, you'll need to write your models in the `trainers/` directory and register them in dassl, then configure the settings in the `configs/` directory and `train.py` file, and add your new tasks to the `configs.py` file. Then you can run `python parallel_runner.py --cfg your_model` to run our own model.
 
-----
+To perform openset experiments on other baseline models (xxx) later, first create the corresponding trainer file in the `trainers/` folder and name it `xxx_dept_etf.py`. Then create the corresponding configuration file in the `configs/` folder and name it `xxx_dept_etf.yaml`. Finally, add the new task configuration `xxx_dept_etf` in the `configs.py` file.
+
+Next, create the corresponding trainer file in the `trainers/` folder and name it `openset_xxx_dept.py`. Then create the corresponding configuration file in the `configs/` folder and name it `openset_xxx_dept.yaml`. Finally, add the new task configuration `openset_xxx_dept` in the `configs.py` file.
+
+Also, add `baselines_xxx` in `configs.py` to test the baseline.
 
 # Citation
 
 If you use our work, please consider citing
 
 ```
-@inproceedings{zhang2024dept,
-  title={Dept: Decoupled prompt tuning},
-  author={Zhang, Ji and Wu, Shihan and Gao, Lianli and Shen, Heng Tao and Song, Jingkuan},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={12924--12933},
-  year={2024}
-}v
+@
 ```
 
-----
+---
 
 # Acknowledgements
 
-Our code is based on [CoOp, CoCoOp](https://github.com/KaiyangZhou/CoOp), [KgCoOp](https://github.com/htyao89/KgCoOp) and [MaPLe](https://github.com/muzairkhattak/multimodal-prompt-learning) repositories. We thank the authors for releasing their code. If you use our model and code, please consider citing these works as well.
+Our code is based on [DePT](https://github.com/Koorye/DePT) and [CaPT ](https://github.com/Koorye/CaPT)repositories. If you use our model and code, please consider citing these works as well.
