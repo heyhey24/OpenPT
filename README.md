@@ -61,16 +61,16 @@ Our OpenPT is orthogonal to both prompt tuning and adapter tuning approaches, th
 
 **Base-to-new generalization performance over 11 datasets.**
 
-![Base-to-New Generalization](examples/PT performance.png)
+![Base-to-New Generalization](examples/PT_performance.png)
 
 **OOD detection performance after each class-incremental learning session on OpenPT-Bench (AUROC)**
 
-![Cross-Dataset Generalization](examples/OOD performance.png)
+![Cross-Dataset Generalization](examples/OOD_performance.png)
 
 
 **Class-incremental learning performance on the five new classes from OpenPT-Bench (ACC)**
 
-![Cross-Dataset Generalization](examples/CIL performance.png)
+![Cross-Dataset Generalization](examples/CIL_performance.png)
 
 ---
 
