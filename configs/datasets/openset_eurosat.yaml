@@ -1,0 +1,3 @@
+DATASET:
+  NAME: "OpenSetEuroSAT"
+  TOTAL_NUM_CLASSES: 15

@@ -1,0 +1,3 @@
+DATASET:
+  NAME: "OpenSetFGVCAircraft"
+  TOTAL_NUM_CLASSES: 65
