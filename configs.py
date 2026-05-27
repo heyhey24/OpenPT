@@ -263,7 +263,7 @@ coop_dept_etf = dict(
     ),
 )
 
-openset_coop_dept = dict(
+coop_openpt = dict(
     gpu_ids=[0],
     mode='openset',
 
@@ -281,8 +281,8 @@ openset_coop_dept = dict(
     grid_search=dict(enable=False),
 
     output=dict(
-        root='outputs/openset_coop_dept',
-        result='results/openset_coop_dept',
+        root='outputs/coop_openpt',
+        result='results/coop_openpt',
         remove_dirs=['root'],
     ),
 )
