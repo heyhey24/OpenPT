@@ -53,8 +53,6 @@ Our OpenPT is orthogonal to both prompt tuning and adapter tuning approaches, th
   <img src="examples/performance.png" width="60%" />
 </div>
 
----
-
 # Installation
 
 This codebase is tested on Ubuntu 20.04.2 LTS with python 3.8. Follow the below steps to create environment and install dependencies.
