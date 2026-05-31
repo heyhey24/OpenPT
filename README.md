@@ -1,30 +1,28 @@
 # OpenPT: Towards Open-World Prompt Tuning
 
-This work is an extension of our preliminary conference version, [DePT](https://github.com/Koorye/DePT).
+---
 
-Our OpenPT can be used as a plugin to improve existingPT methods. Extensive results on a broad spectrum of baselines, datasets, and evaluation metrics demonstrate the effectiveness and flexibility of OpenPT.
+# Abstract
 
-Offical implementation of the paper Towards Open-World Prompt Tuning.
-
-**Note:** We are doing our best to improve this work. If you have any questions or suggestions, please feel free to create an issue in this repo or contact us at jizhang.jim@gmail.com.
+Prompt Tuning (PT) has emerged as a promising parameter-efficient paradigm for adapting pre-trained vision-language
+models (VLMs) to downstream tasks. However, largely built on closed-world assumptions, existing approaches simultaneously suffer
+from the Base-New Tradeoff (BNT), OOD Overconfidence, and Knowledge Evolution Deficiency, severely compromising their
+generalizability and reliability in dynamic, open-world environments. In this work, we present Open-World Prompt Tuning (OpenPT), a
+novel framework for achieving generalizable and reliable adaptation of VLMs in the open world. Specifically, we first reveal that the BNT
+problem stems from a channel bias issue, and present Decoupled Prompt Tuning with Simplex Equiangular Tight Frame (DePT++),
+which improves base-to-new generalization by decoupling base-specific and task-shared knowledge into two isolated feature spaces.
+Building upon DePT++, we then introduce Collaborative Energy-based OOD Detection (CE-OOD), which achieves precise OOD
+detection by integrating complementary energy scores from the two decoupled spaces. Finally, we develop Pseudo-Class Guided
+Class-Incremental Learning (PC-CIL) to facilitate the continual learning of new class knowledge by assigning pseudo-class names to
+OOD samples and distancing new class prototypes from old ones. Remarkably, OpenPT can be used as a plugin to improve existing
+PT methods. Extensive results on a broad spectrum of baselines, datasets, and evaluation metrics demonstrate the effectiveness and
+flexibility of OpenPT.
 
 ---
 
 # Method
 
-> Prompt Tuning (PT) has emerged as a promising parameter-efficient paradigm for adapting pre-trained vision-language
-> models (VLMs) to downstream tasks. However, largely built on closed-world assumptions, existing approaches simultaneously suffer
-> from the Base-New Tradeoff (BNT), OOD Overconfidence, and Knowledge Evolution Deficiency, severely compromising their
-> generalizability and reliability in dynamic, open-world environments. In this work, we present Open-World Prompt Tuning (OpenPT), a
-> novel framework for achieving generalizable and reliable adaptation of VLMs in the open world. Specifically, we first reveal that the BNT
-> problem stems from a channel bias issue, and present Decoupled Prompt Tuning with Simplex Equiangular Tight Frame (DePT++),
-> which improves base-to-new generalization by decoupling base-specific and task-shared knowledge into two isolated feature spaces.
-> Building upon DePT++, we then introduce Collaborative Energy-based OOD Detection (CE-OOD), which achieves precise OOD
-> detection by integrating complementary energy scores from the two decoupled spaces. Finally, we develop Pseudo-Class Guided
-> Class-Incremental Learning (PC-CIL) to facilitate the continual learning of new class knowledge by assigning pseudo-class names to
-> OOD samples and distancing new class prototypes from old ones. Remarkably, OpenPT can be used as a plugin to improve existing
-> PT methods. Extensive results on a broad spectrum of baselines, datasets, and evaluation metrics demonstrate the effectiveness and
-> flexibility of OpenPT.
+> Specifically, we first identify channel bias as the structural origin of the BNT dilemma. To overcome this, we propose Decoupled Prompt Tuning with Simplex Equiangular Tight Frame (DePT++), a novel framework that resolves the dilemma by decoupling base-specific discrimination and task-shared semantics into two isolated feature spaces. Based on DePT++, we then devise the Collaborative Energy-based OOD Detection (CE-OOD) scheme, which achieves precise OOD detection by integrating complementary energy scores from the two decoupled spaces. Finally, we devise the Pseudo-Class Guided Class-Incremental Learning (PC-CIL) strategy that facilitates the continual learning of new classes by assigning pseudo-class names to OOD samples and distancing new class prototypes from old ones in a shared feature space.
 
 ![Framework](examples/OpenPT.png "Overview of OpenPT framework")
 
@@ -127,21 +125,19 @@ If the base model trained on the base-to-new generalization task has been obtain
 
 ```
 python parallel_runner.py --cfg baselines_coop   
-python parallel_runner.py --cfg coop_dept  
+python parallel_runner.py --cfg coop_openpt  
 ```
 
 After running, the output will be in the `outputs/` directory, the results will be tallied in the `results/` directory as csv, and a mail will be sent to email address.
 
 If you want to add your own models, you'll need to write your models in the `trainers/` directory and register them in dassl, then configure the settings in the `configs/` directory and `train.py` file, and add your new tasks to the `configs.py` file. Then you can run `python parallel_runner.py --cfg your_model` to run our own model.
 
-To perform openset experiments on other baseline models (xxx) later, first create the corresponding trainer file in the `trainers/` folder and name it `etf_xxx.py`. Then create the corresponding configuration file in the `configs/` folder . Finally, add the new task configuration `xxx_dept_etf` in the `configs.py` file.
+To later perform openset experiments on other baseline models (e.g., `xxx`), create two trainers: `etf_xxx.py` and `openset_etf_xxx.py` in `trainers/`, along with their corresponding config files in `configs/`. Then add two task configurations to `configs.py`: `xxx_dept_etf` and `xxx_openpt`. Then you can run `python parallel_runner.py --cfg xxx_dept_etf`, followed by `python parallel_runner.py --cfg xxx_openpt`, to run the models you just created.
 
-Next, create the corresponding trainer file in the `trainers/` folder and name it `openset_etf_xxx.py`. Then create the corresponding configuration file in the `configs/` folder . Finally, add the new task configuration `xxx_openpt` in the `configs.py` file.
-
-Also, add `baselines_xxx` in `configs.py` to test the baseline under the OpenPT-bench.
+Also, add `baselines_xxx` to `configs.py` to test the baseline under OpenPT‑bench. You can run `python parallel_runner.py --cfg baselines_xxx`.
 
 ---
 
 # Acknowledgements
 
-Our code is based on [DePT](https://github.com/Koorye/DePT) and [CaPT ](https://github.com/Koorye/CaPT)repositories. If you use our model and code, please consider citing these works as well.
+Our code is based on [DePT](https://github.com/Koorye/DePT), [CaPT ](https://github.com/Koorye/CaPT)and [MODE-OOD](https://github.com/JimZAI/MODE-OOD) repositories. If you use our model and code, please consider citing these works as well.
