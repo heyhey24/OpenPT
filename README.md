@@ -1,5 +1,7 @@
 # OpenPT: Towards Open-World Prompt Tuning
 
+**Note:** Our paper is currently under review, and more details will be announced in due course.
+
 ---
 
 # Abstract
@@ -25,16 +27,6 @@ flexibility of OpenPT.
 > Specifically, we first identify channel bias as the structural origin of the BNT dilemma. To overcome this, we propose Decoupled Prompt Tuning with Simplex Equiangular Tight Frame (DePT++), a novel framework that resolves the dilemma by decoupling base-specific discrimination and task-shared semantics into two isolated feature spaces. Based on DePT++, we then devise the Collaborative Energy-based OOD Detection (CE-OOD) scheme, which achieves precise OOD detection by integrating complementary energy scores from the two decoupled spaces. Finally, we devise the Pseudo-Class Guided Class-Incremental Learning (PC-CIL) strategy that facilitates the continual learning of new classes by assigning pseudo-class names to OOD samples and distancing new class prototypes from old ones in a shared feature space.
 
 ![Framework](examples/OpenPT.png "Overview of OpenPT framework")
-
-## DePT++
-
-![DePT++](examples/DePT++.png)
-
-## PC-CIL
-
-<div align="center">
-  <img src="examples/CIL.png" width="60%" />
-</div>
 
 # Main Contributions
 
