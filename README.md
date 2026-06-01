@@ -16,17 +16,15 @@ which improves base-to-new generalization by decoupling base-specific and task-s
 Building upon DePT++, we then introduce Collaborative Energy-based OOD Detection (CE-OOD), which achieves precise OOD
 detection by integrating complementary energy scores from the two decoupled spaces. Finally, we develop Pseudo-Class Guided
 Class-Incremental Learning (PC-CIL) to facilitate the continual learning of new class knowledge by assigning pseudo-class names to
-OOD samples and distancing new class prototypes from old ones. Remarkably, OpenPT can be used as a plugin to improve existing
-PT methods. Extensive results on a broad spectrum of baselines, datasets, and evaluation metrics demonstrate the effectiveness and
-flexibility of OpenPT.
-
----
+OOD samples and enforcing strict geometric separation between novel and established classes. Remarkably, OpenPT can be used as
+a plugin to improve existing PT methods. Extensive results on a broad spectrum of baselines, datasets, and evaluation metrics
+demonstrate the effectiveness and flexibility of OpenPT.
 
 # Method
 
 > Specifically, we first identify channel bias as the structural origin of the BNT dilemma. To overcome this, we propose Decoupled Prompt Tuning with Simplex Equiangular Tight Frame (DePT++), a novel framework that resolves the dilemma by decoupling base-specific discrimination and task-shared semantics into two isolated feature spaces. Based on DePT++, we then devise the Collaborative Energy-based OOD Detection (CE-OOD) scheme, which achieves precise OOD detection by integrating complementary energy scores from the two decoupled spaces. Finally, we devise the Pseudo-Class Guided Class-Incremental Learning (PC-CIL) strategy that facilitates the continual learning of new classes by assigning pseudo-class names to OOD samples and distancing new class prototypes from old ones in a shared feature space.
 
-![Framework](examples/OpenPT.png "Overview of OpenPT framework")
+![Framework](examples/OpenPT1.png "Overview of OpenPT framework")
 
 # Main Contributions
 
